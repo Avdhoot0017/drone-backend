@@ -139,7 +139,8 @@ class SyncService {
                   uniqueKey: generateObservationUniqueKey(
                     row.flyingLocation,
                     row.vesselRegNo,
-                    row.date instanceof Date ? row.date : null
+                    row.date instanceof Date ? row.date : null,
+                    row.time
                   ),
                   status: processResult === 'new'
                     ? SyncRecordStatus.new_record
@@ -246,11 +247,12 @@ class SyncService {
 
     const date = row.date instanceof Date ? row.date : new Date(row.date);
 
-    // Generate unique key
+    // Generate unique key (includes time to distinguish multiple sightings same day)
     const uniqueKey = generateObservationUniqueKey(
       row.flyingLocation,
       row.vesselRegNo,
-      date
+      date,
+      row.time
     );
 
     // Check for duplicate

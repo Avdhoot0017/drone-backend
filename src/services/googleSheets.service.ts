@@ -8,6 +8,7 @@ import { SheetRow, SheetMetadata } from '../types';
 import { parseDate, parseTime, parseNumeric } from '../utils/helpers';
 
 // Column mapping based on Excel analysis
+// Supports both old format (multiple district tabs) and new format (single Sheet1)
 const COLUMN_MAPPING = {
   'Sr. No.': 'srNo',
   'Enforcment Area': 'enforcementArea',
@@ -27,10 +28,16 @@ const COLUMN_MAPPING = {
   'Amount of forfeited Fish Sale by Auction': 'fishAuctionAmount',
   'How much penalty amount was imposed?': 'penaltyImposed',
   'Out of that, how much penalty amount was recovered?': 'penaltyRecovered',
+  // ACF Remarks - multiple possible column names
   'Remarks of ACF Office': 'remarksAcf',
+  'Remarks by ACF': 'remarksAcf',
   'Remarks by ASF': 'remarksAcf',
   'Remarks': 'remarksAcf',
+  // HO Remarks - multiple possible column names
   'Remarks of HO': 'remarksHo',
+  'Remark Of HO': 'remarksHo',
+  'Remarks HO': 'remarksHo',
+  // Final Verdict / Status
   'Final Verdict by ACF Office (Disposed / Pending)': 'finalVerdict',
 } as const;
 
