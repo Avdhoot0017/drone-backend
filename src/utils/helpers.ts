@@ -2,18 +2,20 @@ import crypto from 'crypto';
 
 /**
  * Generate unique key for observation deduplication
- * Uses: flying_location + vessel_reg_no + date
+ * Uses: flying_location + vessel_reg_no + date + time
  */
 export function generateObservationUniqueKey(
   flyingLocation: string | null,
   vesselRegNo: string | null,
-  date: Date | null
+  date: Date | null,
+  time: string | null = null
 ): string {
   const normalizedLocation = (flyingLocation || '').toLowerCase().trim();
   const normalizedReg = (vesselRegNo || '').toUpperCase().trim();
   const dateStr = date ? formatDateOnly(date) : '';
+  const timeStr = (time || '').trim();
 
-  const combined = `${normalizedLocation}|${normalizedReg}|${dateStr}`;
+  const combined = `${normalizedLocation}|${normalizedReg}|${dateStr}|${timeStr}`;
 
   return crypto.createHash('md5').update(combined).digest('hex');
 }

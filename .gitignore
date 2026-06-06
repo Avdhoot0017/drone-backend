@@ -37,3 +37,4 @@ coverage/
 tmp/
 temp/
 src/config/service-account.json
+.env.production

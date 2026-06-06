@@ -45,5 +45,5 @@ docker-compose*
 *.md
 !README.md
 
-# Service account (will be mounted)
-src/config/service-account.json
+# Service account - included for production build
+# src/config/service-account.json
